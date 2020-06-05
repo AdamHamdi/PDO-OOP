@@ -1,4 +1,4 @@
-<?php require_once('config.php')?>
+<?php require_once('config.php');?>
 
 <!doctype html>
 <html lang="en">
@@ -21,6 +21,7 @@
  
   </head>
   <body>
+   
     <?php if (isset($_POST['submit'])):?>
       <?php if (isset($_POST['title'])):?>
         <?php $title=$_POST['title'];?>
@@ -35,16 +36,23 @@ $conn = new PDO($dsn,$username,$password,$option);
  $stmt->bindParam('1',$title);
  $stmt->bindParam('2',$text);
  $stmt->execute();
+ 
 
 ?>
 
 
     <?php endif;?>
     <?php 
+     
+     $title="";
+     $text="";
+     
+
     $conn = new PDO($dsn,$username,$password,$option);
     $query=("SELECT * FROM ideas ");
     $stmt=$conn->prepare($query);
     $stmt->execute();
+    
     
     ?>
 
@@ -86,10 +94,10 @@ $conn = new PDO($dsn,$username,$password,$option);
                 while ($row=$stmt->fetch(PDO::FETCH_ASSOC)){?>
                 
                 <tr>
-                  <td><?php echo $row['id'];?></td>
+                  <td>#<?php echo $row['id'];?></td>
                   <td><?php echo $row['title'];?></td>
                   <td><?php echo $row['text'];?></td>
-                  <td style="text-align:center;"> X </td>
+                  <td style="text-align:center; "><b><u><a href="delete.php?id=<?php echo $row['id'];?>" style="color:red;">X</a></u></b> </td>
                 </tr>
                 <?php }?>
               </tbody>
