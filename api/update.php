@@ -1,4 +1,8 @@
-<?php require('config.php');?>
+<?php require('config.php');
+
+session_start();
+
+?>
 
 
 <!doctype html>
