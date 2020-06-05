@@ -1,7 +1,24 @@
 <?php 
  require_once('config.php');
+ session_start();
 
 ?>
+<?php 
+     
+     if(isset($_GET['id'])){
+      $id=$_GET['id'];
+     
+    $conn = new PDO($dsn,$username,$password,$option); 
+     $query=("DELETE FROM ideas WHERE id=$id");
+     $stmt=$conn->prepare($query);
+     $stmt->bindValue("i",$id);
+     $stmt->execute();
+     $_SESSION['message']="the record has been deleted successfully";
+     $_SESSION['msg_type']="danger";
+     header("location:index.php");
+     }
+     ?>
+     
 
 <!doctype html>
 <html lang="en">
@@ -18,7 +35,7 @@
       <h1>delete page</h1>
       <p><a href="index.php">Go to the home page</a></p>
       <div style="background:orange; padding:20px; color:white;">
-          the # id is deleted
+         <p> The idea #<?php echo $id;?> is deleted !</p> 
       </div>
       
     <!-- Optional JavaScript -->

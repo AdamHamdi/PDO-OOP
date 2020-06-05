@@ -1,4 +1,6 @@
-<?php require_once('config.php');?>
+<?php 
+session_start();
+require_once('config.php');?>
 
 <!doctype html>
 <html lang="en">
@@ -21,6 +23,8 @@
  
   </head>
   <body>
+
+  
    
     <?php if (isset($_POST['submit'])):?>
       <?php if (isset($_POST['title'])):?>
@@ -39,13 +43,13 @@ $conn = new PDO($dsn,$username,$password,$option);
  
 
 ?>
-
+    <?php $_SESSION['message']="L'insertion a été effectuée avec success";
+    $_SESSION['msg_type']="success"; ?>
 
     <?php endif;?>
     <?php 
      
-     $title="";
-     $text="";
+    
      
 
     $conn = new PDO($dsn,$username,$password,$option);
@@ -55,7 +59,17 @@ $conn = new PDO($dsn,$username,$password,$option);
     
     
     ?>
+<?php if(isset($_SESSION['message'])){?>
+      
+      <div class="alert alert-<?=$_SESSION['msg_type'];?>" role="alert">
+           <a href="#" class="alert-link"> </a><?=$_SESSION['message'];?>
+       </div>
+       <?php } unset($_SESSION['message']); ?>
 
+
+
+
+       
       <div class="container">
       <h1>Share your idea with us:</h1><br>
       <div class="row">
@@ -94,7 +108,7 @@ $conn = new PDO($dsn,$username,$password,$option);
                 while ($row=$stmt->fetch(PDO::FETCH_ASSOC)){?>
                 
                 <tr>
-                  <td>#<?php echo $row['id'];?></td>
+                  <td>#<a href="update.php?id=<?php echo $row['id'];?>"><?php echo $row['id'];?></a></td>
                   <td><?php echo $row['title'];?></td>
                   <td><?php echo $row['text'];?></td>
                   <td style="text-align:center; "><b><u><a href="delete.php?id=<?php echo $row['id'];?>" style="color:red;">X</a></u></b> </td>
