@@ -10,6 +10,15 @@
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+ <style>
+   table,td,th,tr{
+     border:2px  solid;
+     border-bottom: 2px solid;
+     border-collapse: collapse;
+
+   }
+ </style>
+ 
   </head>
   <body>
     <?php if (isset($_POST['submit'])):?>
@@ -31,6 +40,13 @@ $conn = new PDO($dsn,$username,$password,$option);
 
 
     <?php endif;?>
+    <?php 
+    $conn = new PDO($dsn,$username,$password,$option);
+    $query=("SELECT * FROM ideas ");
+    $stmt=$conn->prepare($query);
+    $stmt->execute();
+    
+    ?>
 
       <div class="container">
       <h1>Share your idea with us:</h1><br>
@@ -52,6 +68,32 @@ $conn = new PDO($dsn,$username,$password,$option);
           </div>
           <?php ?>
           </form>
+          </div>
+         
+          <div class="col-md-12">
+          <hr><hr><br>
+            <table class="table">
+             <thead style="background:#c8d6e5;" class="">
+               <tr>
+                 <th>ID</th>
+                 <th>Title</th>
+                 <th>Text</th>
+                 <Th>Delete</Th>
+               </tr>
+             </thead>
+              <tbody style="background:white;color:black">
+                <?php 
+                while ($row=$stmt->fetch(PDO::FETCH_ASSOC)){?>
+                
+                <tr>
+                  <td><?php echo $row['id'];?></td>
+                  <td><?php echo $row['title'];?></td>
+                  <td><?php echo $row['text'];?></td>
+                  <td style="text-align:center;"> X </td>
+                </tr>
+                <?php }?>
+              </tbody>
+            </table>
           </div>
       </div>
       
