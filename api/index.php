@@ -28,10 +28,10 @@ require_once('config.php');?>
    
     <?php if (isset($_POST['submit'])):?>
       <?php if (isset($_POST['title'])):?>
-        <?php $title=$_POST['title'];?>
+        <?php $title=strip_tags($_POST['title']);?>
         <?php endif;?>
         <?php if (isset($_POST['text'])):?>
-         <?php  $text= $_POST['text'];?>
+         <?php  $text= strip_tags($_POST['text']);?>
           <?php endif;?>
 <?php 
 $conn = new PDO($dsn,$username,$password,$option);
@@ -69,7 +69,7 @@ $conn = new PDO($dsn,$username,$password,$option);
 
 
 
-       
+
       <div class="container">
       <h1>Share your idea with us:</h1><br>
       <div class="row">

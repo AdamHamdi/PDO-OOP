@@ -37,9 +37,9 @@ session_start();
      <?php 
      
      if(isset($_POST['update'])){
-      $id= ($_POST['id']);
-      $title= ($_POST['title']);
-      $text=($_POST['text']);
+      $id= strip_tags($_POST['id']);
+      $title= strip_tags($_POST['title']);
+      $text=strip_tags($_POST['text']);
       
      
     $conn = new PDO($dsn,$username,$password,$option); 
