@@ -22,7 +22,7 @@ require_once('config.php');?>
  </style>
  
   </head>
-  <body>
+  <body style="background:#dfe4ea;">
 
   
    
@@ -77,8 +77,16 @@ $conn = new PDO($dsn,$username,$password,$option);
           <div class="col-md-12">
           <form action="" method="post">
           <div class="form-group">
-              <label for="my-input"><b>Idea title:</b></label>
-              <input id="my-input"  type="text" name="title">
+            <div class="row">
+              <div class="col-md-1">
+              <label for="my-input" class="text-center text-capitalize"><b>Idea title:</b></label>
+              </div>
+              <div class="col-md-3">
+              <input id="my-input"  type="text" class ="form-control " name="title">
+              </div>
+            </div>
+              
+              
           </div>
           <div class="form-group">
               <label for="my-input"><b>Idea title:</b></label>
@@ -86,7 +94,7 @@ $conn = new PDO($dsn,$username,$password,$option);
           </div>
           <div class="form-group">
               
-              <input type="submit" name="submit" value="Save your idea" class="btn btn-info">
+              <input type="submit" name="submit" value="Save your idea" class="btn btn-info col-md-3">
           </div>
           <?php ?>
           </form>
