@@ -81,7 +81,7 @@ session_start();
           </div>
 </div>
     </div>
-      <p><a href="index.php">Going to the home page</a></p>
+      <p><u><b><a href="index.php" style="color:red;">Going to the home page</a></b></u></p>
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
